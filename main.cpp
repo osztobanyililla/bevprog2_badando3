@@ -1,13 +1,9 @@
 #include "graphics.hpp"
-using namespace genv;
-
+#include "QuizeMaster.h"
 
 int main()
 {
-    gout.open(400,400);
-    gout <<text("hello world")<< refresh;
-    event ev;
-    while(gin >> ev) {
-    }
+    QuizeMaster master("SUDOKU");
+    master.event_loop();
     return 0;
 }
