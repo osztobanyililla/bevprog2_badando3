@@ -1,5 +1,6 @@
 #include "Button.h"
 #include "iostream"
+#include "QuizeMaster.h"
 
 using namespace genv;
 
@@ -23,7 +24,6 @@ void Button::handle(const event& e){
         if(e.pos_x > pos.x+border_size && e.pos_x < pos.x+sizex-border_size && e.pos_y > pos.y+border_size && e.pos_y < pos.y+sizey-border_size){
             std::cout << "Button pressed" << std::endl;
             parent->start_window = false;
-            std::cout << parent->start_window << std::endl;
         }
     }
 }

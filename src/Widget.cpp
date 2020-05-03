@@ -6,6 +6,7 @@ Widget::Widget(Coord p, int a, int b)
     pos.x = std::min(winx-a-10, p.x);
     pos.y = std::min(winy-b-10, p.y);
     if(pos.x != p.x || pos.y != p.y){
+        std::cout << pos.x << " " << pos.y << std::endl;
         std::cout << "Position should be corrected to correctly draw widget!\n";
     }
     sizex = a;
@@ -23,6 +24,7 @@ Widget::~Widget(){}
 
 void Widget::unfocus(){
     focus = false;
+    std::cout << "unfocus widget" << std::endl;
 }
 
 bool Widget::is_selected(const int& mx, const int& my){

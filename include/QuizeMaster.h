@@ -11,13 +11,15 @@ class QuizeMaster
         QuizeMaster() = delete;
         QuizeMaster(std::string);
         virtual ~QuizeMaster();
-        void event_loop();
         std::string name;
+        Window game_window;
+        bool start_game = false;
+        void check_level();
 
     protected:
 
     private:
-        Window game_window;
+
 };
 
 #endif // QUIZEMASTER_H

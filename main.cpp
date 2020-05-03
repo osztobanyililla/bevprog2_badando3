@@ -4,6 +4,6 @@
 int main()
 {
     QuizeMaster master("SUDOKU");
-    master.event_loop();
+    master.game_window.event_loop();
     return 0;
 }

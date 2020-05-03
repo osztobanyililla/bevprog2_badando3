@@ -1,4 +1,5 @@
 #include "ComboBox.h"
+#include "QuizeMaster.h"
 #include <iostream>
 using namespace genv;
 
@@ -9,12 +10,12 @@ MyColor select_color(0,0,0);
 MyColor button_color(207,212,213);
 MyColor slider_color(194,194,194);
 
-ComboBox::ComboBox(Coord p, int a, int b, std::vector<std::string> v, int m):
-    Widget(p, a, b), items(v), max_item(m)
+ComboBox::ComboBox(Coord p, int a, int b, std::vector<std::string> v, int m, Window* w):
+    Widget(p, a, b), items(v), max_item(m), parent(w)
 {
     if(pos.y+sizey+max_item*(2*gout.cdescent()+text_height) > winy){
-        pos.y = winy - 10 - sizey - max_item*(2*gout.cdescent()+text_height);
         std::cout << "Position should be corrected to correctly draw widget!\n";
+        pos.y = winy - 10 - sizey - max_item*(2*gout.cdescent()+text_height);
     }
 }
 
@@ -115,6 +116,8 @@ void ComboBox::handle(const event& e){
                 if(e.pos_x > pos.x+border_size && e.pos_x < pos.x+item_box_x-border_size && e.pos_y > pos.y+sizey+i*single_item_y && e.pos_y < pos.y+sizey+(i+1)*single_item_y){
                     selected_index = i + (first_not_shown_index-max_item);
                     is_open = false;
+                    parent->level = items[i];
+                    parent->level_selected = true;
                 }
             }
         }
@@ -144,3 +147,4 @@ std::string ComboBox::get_data(){
         return "-";
     }
 }
+
