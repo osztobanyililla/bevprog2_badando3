@@ -98,10 +98,20 @@ void QuizeMaster::set_initial_values(){
     }
 }
 
-void QuizeMaster::check_box(int index){
+void QuizeMaster::check_rules(int index){
+    if(check_box(index) || check_row(index) ||check_column(index)){
+        game_window.game_widgets[index]->multiple = true;
+    }
+    else{
+        game_window.game_widgets[index]->multiple = false;
+    }
+    check_solution();
+}
+
+bool QuizeMaster::check_box(int index){
     std::cout << "Box checked\n";
     int value = game_window.game_widgets[index]->num;
-
+    bool multiple = false;
     bool criteria_1;
     bool criteria_2;
     for(int i = 0; i < game_window.game_widgets.size(); i++){
@@ -125,37 +135,44 @@ void QuizeMaster::check_box(int index){
         if(floor(index/9) > 5 && floor(i/9) > 5){
             criteria_2 = true;
         }
-        if(i != index && criteria_1 && criteria_2 && value == game_window.game_widgets[i]->num){
-            std::cout << "multiple " << value << " in box " << i << std::endl;
+        if(i != index && criteria_1 && criteria_2 && value == game_window.game_widgets[i]->num && value != 0){
+            std::cout << "multiple " << value << " in box " << std::endl;
+            multiple = true;
         }
     }
+    return multiple;
 }
 
-void QuizeMaster::check_row(int index){
+bool QuizeMaster::check_row(int index){
     std::cout << "Row checked\n";
     int value = game_window.game_widgets[index]->num;
     int ind_in_row = index%9;
     int row_ind = floor(index/9);
+    bool multiple = false;
     for(int i = 0; i < game_window.game_widgets.size(); i++){
         if(i != index && floor(i/9) == row_ind){
             if(value != 0 && value == game_window.game_widgets[i]->num){
+                multiple = true;
                 std::cout << "multiple " << value << " in " << row_ind+1 << ". row\n";
             }
         }
     }
-
+    return multiple;
 }
 
-void QuizeMaster::check_column(int index){
+bool QuizeMaster::check_column(int index){
     std::cout << "Column checked\n";
     int value = game_window.game_widgets[index]->num;
+    bool multiple = false;
     for(int i = 0; i < game_window.game_widgets.size(); i++){
         if(i != index && i%9 == index%9){
             if(value != 0 && value == game_window.game_widgets[i]->num){
+                multiple = true;
                 std::cout << "multiple " << value << " in " << (i%9)+1 << ". column\n";
             }
         }
     }
+    return multiple;
 }
 
 

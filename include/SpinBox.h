@@ -16,6 +16,7 @@ class SpinBox : public Widget
         void set_data(int);
         bool fix = false;
         int num = 0;
+        bool multiple = false;
 
     protected:
         int max_num;
