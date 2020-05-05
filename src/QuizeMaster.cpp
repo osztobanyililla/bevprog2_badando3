@@ -98,6 +98,65 @@ void QuizeMaster::set_initial_values(){
     }
 }
 
+void QuizeMaster::check_box(int index){
+    std::cout << "Box checked\n";
+    int value = game_window.game_widgets[index]->num;
+
+    bool criteria_1;
+    bool criteria_2;
+    for(int i = 0; i < game_window.game_widgets.size(); i++){
+        criteria_1 = false;
+        criteria_2 = false;
+        if(index%9 < 3 && i%9 < 3){
+            criteria_1 = true;
+        }
+        if(index%9 > 2 && index%9 < 6 && i%9 > 2 && i%9 < 6){
+            criteria_1 = true;
+        }
+        if(index%9 > 5 && i%9 > 5){
+            criteria_1 = true;
+        }
+        if(floor(index/9) < 3 && floor(i/9) < 3){
+            criteria_2 = true;
+        }
+        if(floor(index/9) > 2 && floor(index/9) < 6 && floor(i/9) > 2 && floor(i/9) < 6){
+            criteria_2 = true;
+        }
+        if(floor(index/9) > 5 && floor(i/9) > 5){
+            criteria_2 = true;
+        }
+        if(i != index && criteria_1 && criteria_2 && value == game_window.game_widgets[i]->num){
+            std::cout << "multiple " << value << " in box " << i << std::endl;
+        }
+    }
+}
+
+void QuizeMaster::check_row(int index){
+    std::cout << "Row checked\n";
+    int value = game_window.game_widgets[index]->num;
+    int ind_in_row = index%9;
+    int row_ind = floor(index/9);
+    for(int i = 0; i < game_window.game_widgets.size(); i++){
+        if(i != index && floor(i/9) == row_ind){
+            if(value != 0 && value == game_window.game_widgets[i]->num){
+                std::cout << "multiple " << value << " in " << row_ind+1 << ". row\n";
+            }
+        }
+    }
+
+}
+
+void QuizeMaster::check_column(int index){
+    std::cout << "Column checked\n";
+    int value = game_window.game_widgets[index]->num;
+    for(int i = 0; i < game_window.game_widgets.size(); i++){
+        if(i != index && i%9 == index%9){
+            if(value != 0 && value == game_window.game_widgets[i]->num){
+                std::cout << "multiple " << value << " in " << (i%9)+1 << ". column\n";
+            }
+        }
+    }
+}
 
 
 void QuizeMaster::check_solution(){

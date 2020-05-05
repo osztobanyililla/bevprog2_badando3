@@ -128,6 +128,9 @@ void Window::event_loop(){
             if(selected_widget){
                 selected_widget->handle(ev);
                 selected_widget->unfocus();
+                master->check_row(ind);
+                master->check_column(ind);
+                master->check_box(ind);
                 master->check_solution();
             }
             if(ev.type == ev_timer){
