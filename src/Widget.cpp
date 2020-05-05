@@ -23,13 +23,14 @@ Widget::Widget(Coord p, int a, int b)
 Widget::~Widget(){}
 
 void Widget::unfocus(){
-    focus = false;
     std::cout << "unfocus widget" << std::endl;
+    focus = false;
 }
 
 bool Widget::is_selected(const int& mx, const int& my){
     if(mx > pos.x && mx < pos.x + sizex && my > pos.y && my < pos.y + sizey){
         focus = true;
+        std::cout << "Position: " << pos.x << " " << pos.y << std::endl;
     }
     return focus;
 }

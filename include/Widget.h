@@ -1,8 +1,8 @@
 #ifndef WIDGET_H
 #define WIDGET_H
 #include "graphics.hpp"
-#define winx 600
-#define winy 600
+#define winx 640
+#define winy 640
 
 
 struct Coord{
@@ -41,11 +41,14 @@ class Widget
         virtual void unfocus();
         virtual bool is_selected(const int&, const int&);
         virtual std::string get_data();
-
-    protected:
         Coord pos;
         int sizex, sizey;
         bool focus = false;
+
+    protected:
+        //Coord pos;
+        //int sizex, sizey;
+        //bool focus = false;
         int border_size;
         int text_height = genv::gout.cascent();
 

@@ -13,9 +13,11 @@ class SpinBox : public Widget
         void draw();
         void handle(const genv::event&);
         std::string get_data();
+        void set_data(int);
+        bool fix = false;
+        int num = 0;
 
     protected:
-        int num = 0;
         int max_num;
         int min_num;
 

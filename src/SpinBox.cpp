@@ -27,58 +27,67 @@ void SpinBox::draw(){
 
 void SpinBox::handle(const event& e){
     int num_box_x = int(3*sizex/4);
-    if(e.type == ev_mouse && e.button == btn_left){
-        if(e.pos_x > pos.x+num_box_x && e.pos_x < pos.x+sizex-border_size && e.pos_y > pos.y+border_size && e.pos_y < pos.y+sizey/2-border_size/2){
-            if(num < max_num){
-                num += 1;
+    if(!fix){
+        if(e.type == ev_mouse && e.button == btn_left){
+            if(e.pos_x > pos.x+num_box_x && e.pos_x < pos.x+sizex-border_size && e.pos_y > pos.y+border_size && e.pos_y < pos.y+sizey/2-border_size/2){
+                if(num < max_num){
+                    num += 1;
+                }
+                else{
+                    std::cout << "Maximum value reached" << std::endl;
+                }
             }
-            else{
-                std::cout << "Maximum value reached" << std::endl;
+            if(e.pos_x > pos.x+num_box_x && e.pos_x < pos.x+sizex-border_size && e.pos_y > pos.y+sizey/2+border_size/2 && e.pos_y < pos.y+sizey-border_size){
+                if(num > min_num){
+                    num -= 1;
+                }
+                else{
+                    std::cout << "Minimum value reached" << std::endl;
+                }
             }
         }
-        if(e.pos_x > pos.x+num_box_x && e.pos_x < pos.x+sizex-border_size && e.pos_y > pos.y+sizey/2+border_size/2 && e.pos_y < pos.y+sizey-border_size){
+        if(e.type == ev_key && e.keycode == key_up){
+                if(num < max_num){
+                    num += 1;
+                }
+                else{
+                    std::cout << "Maximum value reached" << std::endl;
+                }
+        }
+        if(e.type == ev_key && e.keycode == key_down){
             if(num > min_num){
                 num -= 1;
             }
-            else{
-                std::cout << "Minimum value reached" << std::endl;
-            }
+                else{
+                    std::cout << "Minimum value reached" << std::endl;
+                }
         }
-    }
-    if(e.type == ev_key && e.keycode == key_up){
-            if(num < max_num){
-                num += 1;
+        if(e.type == ev_key && e.keycode == key_pgup){
+            if(num+10 <= max_num){
+                num += 10;
             }
             else{
                 std::cout << "Maximum value reached" << std::endl;
             }
-    }
-    if(e.type == ev_key && e.keycode == key_down){
-        if(num > min_num){
-            num -= 1;
         }
+        if(e.type == ev_key && e.keycode == key_pgdn){
+            if(num-10 >= min_num){
+                num -= 10;
+            }
             else{
                 std::cout << "Minimum value reached" << std::endl;
             }
-    }
-    if(e.type == ev_key && e.keycode == key_pgup){
-        if(num+10 <= max_num){
-            num += 10;
-        }
-        else{
-            std::cout << "Maximum value reached" << std::endl;
         }
     }
-    if(e.type == ev_key && e.keycode == key_pgdn){
-        if(num-10 >= min_num){
-            num -= 10;
-        }
-        else{
-            std::cout << "Minimum value reached" << std::endl;
-        }
+    else{
+        std::cout << "Value can not be changed" << std::endl;
     }
 }
 
 std::string SpinBox::get_data(){
     return std::to_string(num);
+}
+
+void SpinBox::set_data(int a){
+    num = a;
 }
