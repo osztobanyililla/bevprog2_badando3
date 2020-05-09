@@ -22,6 +22,7 @@ class SpinBox : public Widget
         int max_num;
         int min_num;
 
+
     private:
 };
 

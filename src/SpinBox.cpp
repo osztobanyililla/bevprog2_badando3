@@ -25,14 +25,20 @@ void SpinBox::draw(){
     gout << move_to(pos.x+num_box_x, pos.y+border_size) << box(button_body_x, button_body_y);
     gout << move_to(pos.x+num_box_x, pos.y+2*border_size+button_body_y) << box(button_body_x, button_body_y);
     int text_size = gout.twidth(std::to_string(num));
-    if(multiple){
-        MyColor text_color(255,0,0);
-        gout << move_to(pos.x + (num_box_x-text_size)/2, pos.y + (sizey+text_height)/2) << color(text_color.r, text_color.g, text_color.b) << text(std::to_string(num));
-        gout << color(0,0,0);
+    if(num != 0){
+        if(multiple){
+            MyColor text_color(255,0,0);
+            gout << move_to(pos.x + (num_box_x-text_size)/2, pos.y + (sizey+text_height)/2) << color(text_color.r, text_color.g, text_color.b) << text(std::to_string(num));
+            gout << color(0,0,0);
+        }
+        else{
+            MyColor text_color(0,0,0);
+            gout << move_to(pos.x + (num_box_x-text_size)/2, pos.y + (sizey+text_height)/2) << color(text_color.r, text_color.g, text_color.b) << text(std::to_string(num));
+        }
     }
     else{
         MyColor text_color(0,0,0);
-        gout << move_to(pos.x + (num_box_x-text_size)/2, pos.y + (sizey+text_height)/2) << color(text_color.r, text_color.g, text_color.b) << text(std::to_string(num));
+        gout << color(text_color.r, text_color.g, text_color.b);
     }
     int line_size = button_body_x/4;
     gout << move_to(pos.x+num_box_x+button_body_x/2-line_size, pos.y+border_size+(button_body_y+line_size)/2) << line(line_size, -1*line_size) <<line(line_size, line_size);
@@ -48,7 +54,7 @@ void SpinBox::handle(const event& e){
                     num += 1;
                 }
                 else{
-                    std::cout << "Maximum value reached" << std::endl;
+                    num = min_num;
                 }
             }
             if(e.pos_x > pos.x+num_box_x && e.pos_x < pos.x+sizex-border_size && e.pos_y > pos.y+sizey/2+border_size/2 && e.pos_y < pos.y+sizey-border_size){
@@ -56,7 +62,7 @@ void SpinBox::handle(const event& e){
                     num -= 1;
                 }
                 else{
-                    std::cout << "Minimum value reached" << std::endl;
+                    num = max_num;
                 }
             }
         }
