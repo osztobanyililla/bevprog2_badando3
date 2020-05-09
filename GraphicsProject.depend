@@ -14,7 +14,7 @@
 1588260954 c:\users\oszto\documents\ppke\msc\3.f…l…v\bevprog2\bevprog2_badando3\include\graphics.hpp
 	<string>
 
-1589039283 source:c:\users\oszto\documents\ppke\msc\3.f…l…v\bevprog2\bevprog2_badando3\src\quizemaster.cpp
+1589054948 source:c:\users\oszto\documents\ppke\msc\3.f…l…v\bevprog2\bevprog2_badando3\src\quizemaster.cpp
 	"QuizeMaster.h"
 	"iostream"
 	"ComboBox.h"
@@ -45,7 +45,7 @@
 1589036739 c:\users\oszto\documents\ppke\msc\3.f…l…v\bevprog2\bevprog2_badando3\include\spinbox.h
 	<Widget.h>
 
-1588850927 source:c:\users\oszto\documents\ppke\msc\3.f…l…v\bevprog2\bevprog2_badando3\src\widget.cpp
+1589054526 source:c:\users\oszto\documents\ppke\msc\3.f…l…v\bevprog2\bevprog2_badando3\src\widget.cpp
 	"Widget.h"
 	<iostream>
 
@@ -53,7 +53,7 @@
 	"graphics.hpp"
 	"QuizeMaster.h"
 
-1589039957 source:c:\users\oszto\documents\ppke\msc\3.f…l…v\bevprog2\bevprog2_badando3\src\window.cpp
+1589054565 source:c:\users\oszto\documents\ppke\msc\3.f…l…v\bevprog2\bevprog2_badando3\src\window.cpp
 	"Window.h"
 	"vector"
 	"iostream"
@@ -71,7 +71,7 @@
 1588850926 c:\users\oszto\documents\ppke\msc\3.f…l…v\bevprog2\bevprog2_badando3\include\statictextbox.h
 	<Widget.h>
 
-1588850926 source:c:\users\oszto\documents\ppke\msc\3.f…l…v\bevprog2\bevprog2_badando3\src\button.cpp
+1589054816 source:c:\users\oszto\documents\ppke\msc\3.f…l…v\bevprog2\bevprog2_badando3\src\button.cpp
 	"Button.h"
 	"iostream"
 	"QuizeMaster.h"

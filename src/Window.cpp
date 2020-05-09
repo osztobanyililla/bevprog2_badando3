@@ -17,10 +17,10 @@ Window::Window(int sx, int sy, QuizeMaster* qm):
         std::vector<std::string> level_names {"Easy", "Medium", "Hard"};
         level_selection = new ComboBox(Coord(sx/2-100, sy/4), 200, 50,level_names, 3, this);
         start_btn = new Button(Coord(sx/2-50, sy/2+50), 100, 70, "START", this);
-        start_labels.push_back(new StaticTextBox(Coord(10, sy/4-100), sx-10, 30, master->name));
-        start_labels.push_back(new StaticTextBox(Coord(10, sy/4-70), sx-10, 30, "Select level and press Start button to start game!"));
-        start_labels.push_back(new StaticTextBox(Coord(100, sy/3+100), sx/2, 30, "I would like to solve it without help"));
-        help_btn = new CheckBox(Coord(sx/2+130, sy/3+100), 30, 30);
+        start_labels.push_back(new StaticTextBox(Coord(10, sy/4-100), sx-20, 30, master->name));
+        start_labels.push_back(new StaticTextBox(Coord(10, sy/4-70), sx-20, 30, "Select level and press Start button to start game!"));
+        start_labels.push_back(new StaticTextBox(Coord(120, sy/3+100), sx/2, 30, "I would like to solve it without help"));
+        help_btn = new CheckBox(Coord(sx/2+150, sy/3+100), 30, 30);
         int count_i = 0;
         for(int j = 0; j < 9; j++){
             for(int i = 0; i < 9; i++){
@@ -71,32 +71,27 @@ void Window::clear_screen(){
 }
 
 void Window::event_loop(){
-    for(int i = 0; i < game_widgets.size(); i ++){
-        std::cout << i  << ": " << game_widgets[i]->pos.x << " " << game_widgets[i]->pos.y << " " << game_widgets[i]->sizex << "" << game_widgets[i]->sizey << std::endl;
-    }
     event ev;
     gin.timer(30);
     while(gin >> ev){
         if(!master->start_game){
             Widget* selected_widget = nullptr;
             if(ev.type == ev_mouse && ev.button == btn_left){
-                if(start_btn->is_selected(ev.pos_x, ev.pos_y)){
-                    level_selection->unfocus();
-                    help_btn->unfocus();
-                    selected_widget = start_btn;
-                    //std::cout << "button selected" << std::endl;
-                    master->check_level();
-                }
                 if(level_selection->is_selected(ev.pos_x, ev.pos_y)){
                     start_btn->unfocus();
                     help_btn->unfocus();
                     selected_widget = level_selection;
-                    //std::cout << "combo selected" << std::endl;
                 }
                 if(help_btn->is_selected(ev.pos_x, ev.pos_y)){
                     start_btn->unfocus();
                     level_selection->unfocus();
                     selected_widget = help_btn;
+                }
+                if(start_btn->is_selected(ev.pos_x, ev.pos_y)){
+                    level_selection->unfocus();
+                    help_btn->unfocus();
+                    selected_widget = start_btn;
+                    master->check_level();
                 }
             }
             if(selected_widget){
@@ -119,19 +114,11 @@ void Window::event_loop(){
             Widget* selected_widget = nullptr;
             int ind = 0;
             if(ev.type == ev_mouse && ev.button == btn_left){
-                /*if(selected_widget != nullptr){
-                    selected_widget->unfocus();
-                    selected_widget = nullptr;
-                }*/
-                //for(auto it = game_widgets.rbegin(); it != game_widgets.rend(); ++it){
                 for(int i = 0; i < game_widgets.size(); i++){
-                    //SpinBox* w = *it;
                     SpinBox* w = game_widgets[i];
                     if(w->is_selected(ev.pos_x, ev.pos_y)){
                         ind = i;
-                        //std::cout << "mouse: " << ev.pos_x << " " << ev.pos_y << std::endl;
                         selected_widget = w;
-                        //std::cout << selected_widget->pos.x << " " << selected_widget->pos.y << " " << selected_widget->focus << std::endl;
                         break;
                     }
                 }

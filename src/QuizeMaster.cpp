@@ -21,20 +21,18 @@ QuizeMaster::~QuizeMaster()
 
 
 void QuizeMaster::check_level(){
+    std::cout << "Check level\n";
     if(game_window.level == "Easy"){
-        std::cout << "Easy level selected" << std::endl;
         start_game = true;
         read_in_sudoku("easy_sudoku.txt");
         read_in_solution("easy_solution.txt");
     }
     else if(game_window.level == "Medium"){
-        std::cout << "Medium level selected" << std::endl;
         start_game = true;
         read_in_sudoku("medium_sudoku.txt");
         read_in_solution("medium_solution.txt");
     }
     else if(game_window.level == "Hard"){
-        std::cout << "Hard level selected" << std::endl;
         start_game = true;
         read_in_sudoku("hard_sudoku.txt");
         read_in_solution("hard_solution.txt");
@@ -45,11 +43,9 @@ void QuizeMaster::check_level(){
     }
     if(game_window.help_btn->checked){
         without_help = true;
-        std::cout << "Without help\n";
     }
     else{
         without_help = false;
-        std::cout << "With help\n";
     }
 }
 
@@ -59,7 +55,6 @@ void QuizeMaster::read_in_sudoku(std::string file_name){
         std::cout << "No such file" << std::endl;
     }
     else{
-        std::cout << "the puzzel:\n";
         std::string line;
         while(!my_file.eof()){
             std::getline(my_file, line);
@@ -68,9 +63,7 @@ void QuizeMaster::read_in_sudoku(std::string file_name){
                 int a = 0;
                 ss >> a;
                 puzzle.push_back(a);
-                std::cout << a;
             }
-            std::cout << std::endl;
         }
         set_initial_values();
     }
@@ -82,7 +75,6 @@ void QuizeMaster::read_in_solution(std::string file_name){
         std::cout << "No such file" << std::endl;
     }
     else{
-        std::cout << "the solution:\n";
         std::string line;
         while(!my_file.eof()){
             std::getline(my_file, line);
@@ -91,9 +83,7 @@ void QuizeMaster::read_in_solution(std::string file_name){
                 int a = 0;
                 ss >> a;
                 solution.push_back(a);
-                std::cout << a;
             }
-            std::cout << std::endl;
         }
     }
 }
@@ -120,7 +110,6 @@ void QuizeMaster::check_rules(int index){
 }
 
 bool QuizeMaster::check_box(int index){
-    std::cout << "Box checked\n";
     int value = game_window.game_widgets[index]->num;
     bool multiple = false;
     bool criteria_1;
@@ -147,7 +136,7 @@ bool QuizeMaster::check_box(int index){
             criteria_2 = true;
         }
         if(i != index && criteria_1 && criteria_2 && value == game_window.game_widgets[i]->num && value != 0){
-            std::cout << "multiple " << value << " in box " << std::endl;
+            //std::cout << "multiple " << value << " in box " << std::endl;
             multiple = true;
         }
     }
@@ -155,7 +144,6 @@ bool QuizeMaster::check_box(int index){
 }
 
 bool QuizeMaster::check_row(int index){
-    std::cout << "Row checked\n";
     int value = game_window.game_widgets[index]->num;
     int ind_in_row = index%9;
     int row_ind = floor(index/9);
@@ -164,7 +152,7 @@ bool QuizeMaster::check_row(int index){
         if(i != index && floor(i/9) == row_ind){
             if(value != 0 && value == game_window.game_widgets[i]->num){
                 multiple = true;
-                std::cout << "multiple " << value << " in " << row_ind+1 << ". row\n";
+                //std::cout << "multiple " << value << " in " << row_ind+1 << ". row\n";
             }
         }
     }
@@ -172,14 +160,13 @@ bool QuizeMaster::check_row(int index){
 }
 
 bool QuizeMaster::check_column(int index){
-    std::cout << "Column checked\n";
     int value = game_window.game_widgets[index]->num;
     bool multiple = false;
     for(int i = 0; i < game_window.game_widgets.size(); i++){
         if(i != index && i%9 == index%9){
             if(value != 0 && value == game_window.game_widgets[i]->num){
                 multiple = true;
-                std::cout << "multiple " << value << " in " << (i%9)+1 << ". column\n";
+                //std::cout << "multiple " << value << " in " << (i%9)+1 << ". column\n";
             }
         }
     }

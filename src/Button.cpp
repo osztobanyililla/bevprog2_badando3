@@ -22,7 +22,7 @@ void Button::draw(){
 void Button::handle(const event& e){
     if(e.type == ev_mouse && e.button == btn_left){
         if(e.pos_x > pos.x+border_size && e.pos_x < pos.x+sizex-border_size && e.pos_y > pos.y+border_size && e.pos_y < pos.y+sizey-border_size){
-            std::cout << "Button pressed" << std::endl;
+            //std::cout << "Button pressed" << std::endl;
             pressed = true;
         }
     }
