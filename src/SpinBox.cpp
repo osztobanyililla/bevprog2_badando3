@@ -9,10 +9,17 @@ SpinBox::~SpinBox(){}
 
 void SpinBox::draw(){
     MyColor border_color(176, 200, 249);
-    MyColor body_color(255, 255, 255);
     int num_box_x = int(3*sizex/4);
     gout << move_to(pos.x, pos.y) << color(border_color.r, border_color.g, border_color.b) << box(sizex, sizey);
-    gout << move_to(pos.x + border_size, pos.y + border_size) << color(body_color.r, body_color.g, body_color.b) << box(num_box_x - 2*border_size, sizey - 2*border_size);
+    if(fix){
+        MyColor body_color(205, 205, 205);
+        gout << move_to(pos.x + border_size, pos.y + border_size) << color(body_color.r, body_color.g, body_color.b) << box(num_box_x - 2*border_size, sizey - 2*border_size);
+        gout << color(255, 255, 255);
+    }
+    else{
+        MyColor body_color(255, 255, 255);
+        gout << move_to(pos.x + border_size, pos.y + border_size) << color(body_color.r, body_color.g, body_color.b) << box(num_box_x - 2*border_size, sizey - 2*border_size);
+    }
     int button_body_y = (sizey-3*border_size)/2;
     int button_body_x = sizex - num_box_x - border_size;
     gout << move_to(pos.x+num_box_x, pos.y+border_size) << box(button_body_x, button_body_y);
