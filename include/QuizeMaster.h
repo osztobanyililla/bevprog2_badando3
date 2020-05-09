@@ -31,6 +31,7 @@ class QuizeMaster
         bool check_column(int);
         bool check_box(int);
         void check_solution();
+        bool without_help = false;
 
 };
 

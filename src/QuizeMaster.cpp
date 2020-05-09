@@ -3,6 +3,7 @@
 #include "ComboBox.h"
 #include "StaticTextBox.h"
 #include "Button.h"
+#include "CheckBox.h"
 #include "fstream"
 #include "sstream"
 #include "Widget.h"
@@ -41,6 +42,14 @@ void QuizeMaster::check_level(){
     else{
         std::cout << "no level selected" << std::endl;
         start_game = false;
+    }
+    if(game_window.help_btn->checked){
+        without_help = true;
+        std::cout << "Without help\n";
+    }
+    else{
+        without_help = false;
+        std::cout << "With help\n";
     }
 }
 
@@ -99,11 +108,13 @@ void QuizeMaster::set_initial_values(){
 }
 
 void QuizeMaster::check_rules(int index){
-    if(check_box(index) || check_row(index) ||check_column(index)){
-        game_window.game_widgets[index]->multiple = true;
-    }
-    else{
-        game_window.game_widgets[index]->multiple = false;
+    if(!without_help){
+        if(check_box(index) || check_row(index) ||check_column(index)){
+            game_window.game_widgets[index]->multiple = true;
+        }
+        else{
+            game_window.game_widgets[index]->multiple = false;
+        }
     }
     check_solution();
 }

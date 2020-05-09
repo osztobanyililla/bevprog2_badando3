@@ -6,6 +6,7 @@
 #include "Button.h"
 #include "QuizeMaster.h"
 #include "SpinBox.h"
+#include "CheckBox.h"
 #include "cmath"
 
 using namespace genv;
@@ -15,9 +16,11 @@ Window::Window(int sx, int sy, QuizeMaster* qm):
     {
         std::vector<std::string> level_names {"Easy", "Medium", "Hard"};
         level_selection = new ComboBox(Coord(sx/2-100, sy/4), 200, 50,level_names, 3, this);
-        start_btn = new Button(Coord(sx/2-50, sy/2), 100, 70, "START", this);
-        start_labels.push_back(new StaticTextBox(Coord(10, sy/4-100), winx-10, 30, master->name));
-        start_labels.push_back(new StaticTextBox(Coord(10, sy/4-70), winx-10, 30, "Select level and press Start button to start game!"));
+        start_btn = new Button(Coord(sx/2-50, sy/2+50), 100, 70, "START", this);
+        start_labels.push_back(new StaticTextBox(Coord(10, sy/4-100), sx-10, 30, master->name));
+        start_labels.push_back(new StaticTextBox(Coord(10, sy/4-70), sx-10, 30, "Select level and press Start button to start game!"));
+        start_labels.push_back(new StaticTextBox(Coord(100, sy/3+100), sx/2, 30, "I would like to solve it without help"));
+        help_btn = new CheckBox(Coord(sx/2+130, sy/3+100), 30, 30);
         int count_i = 0;
         for(int j = 0; j < 9; j++){
             for(int i = 0; i < 9; i++){
@@ -79,14 +82,21 @@ void Window::event_loop(){
             if(ev.type == ev_mouse && ev.button == btn_left){
                 if(start_btn->is_selected(ev.pos_x, ev.pos_y)){
                     level_selection->unfocus();
+                    help_btn->unfocus();
                     selected_widget = start_btn;
                     //std::cout << "button selected" << std::endl;
                     master->check_level();
                 }
                 if(level_selection->is_selected(ev.pos_x, ev.pos_y)){
                     start_btn->unfocus();
+                    help_btn->unfocus();
                     selected_widget = level_selection;
                     //std::cout << "combo selected" << std::endl;
+                }
+                if(help_btn->is_selected(ev.pos_x, ev.pos_y)){
+                    start_btn->unfocus();
+                    level_selection->unfocus();
+                    selected_widget = help_btn;
                 }
             }
             if(selected_widget){
@@ -96,6 +106,7 @@ void Window::event_loop(){
                 clear_screen();
                 start_btn->draw();
                 level_selection->draw();
+                help_btn->draw();
                 for(Widget* w : start_labels){
                     w->draw();
                 }

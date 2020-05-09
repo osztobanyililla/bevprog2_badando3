@@ -4,10 +4,9 @@
 	"QuizeMaster.h"
 	<iostream>
 
-1588850926 c:\users\oszto\documents\ppke\msc\3.f…l…v\bevprog2\bevprog2_badando3\include\combobox.h
+1589037934 c:\users\oszto\documents\ppke\msc\3.f…l…v\bevprog2\bevprog2_badando3\include\combobox.h
 	<Widget.h>
 	<vector>
-	<Window.h>
 
 1588850926 c:\users\oszto\documents\ppke\msc\3.f…l…v\bevprog2\bevprog2_badando3\include\widget.h
 	"graphics.hpp"
@@ -15,28 +14,27 @@
 1588260954 c:\users\oszto\documents\ppke\msc\3.f…l…v\bevprog2\bevprog2_badando3\include\graphics.hpp
 	<string>
 
-1588850927 source:c:\users\oszto\documents\ppke\msc\3.f…l…v\bevprog2\bevprog2_badando3\src\quizemaster.cpp
+1589039283 source:c:\users\oszto\documents\ppke\msc\3.f…l…v\bevprog2\bevprog2_badando3\src\quizemaster.cpp
 	"QuizeMaster.h"
 	"iostream"
 	"ComboBox.h"
 	"StaticTextBox.h"
 	"Button.h"
+	"CheckBox.h"
 	"fstream"
 	"sstream"
 	"Widget.h"
 	"cmath"
 
-1588850926 c:\users\oszto\documents\ppke\msc\3.f…l…v\bevprog2\bevprog2_badando3\include\quizemaster.h
+1589038924 c:\users\oszto\documents\ppke\msc\3.f…l…v\bevprog2\bevprog2_badando3\include\quizemaster.h
 	"vector"
 	"Widget.h"
 	"Window.h"
 	"fstream"
 
-1588850926 c:\users\oszto\documents\ppke\msc\3.f…l…v\bevprog2\bevprog2_badando3\include\window.h
+1589038288 c:\users\oszto\documents\ppke\msc\3.f…l…v\bevprog2\bevprog2_badando3\include\window.h
 	"Widget.h"
 	"vector"
-	"ComboBox.h"
-	"Button.h"
 	"StaticTextBox.h"
 	"SpinBox.h"
 
@@ -55,7 +53,7 @@
 	"graphics.hpp"
 	"QuizeMaster.h"
 
-1588852679 source:c:\users\oszto\documents\ppke\msc\3.f…l…v\bevprog2\bevprog2_badando3\src\window.cpp
+1589039957 source:c:\users\oszto\documents\ppke\msc\3.f…l…v\bevprog2\bevprog2_badando3\src\window.cpp
 	"Window.h"
 	"vector"
 	"iostream"
@@ -64,6 +62,7 @@
 	"Button.h"
 	"QuizeMaster.h"
 	"SpinBox.h"
+	"CheckBox.h"
 	"cmath"
 
 1588850927 source:c:\users\oszto\documents\ppke\msc\3.f…l…v\bevprog2\bevprog2_badando3\src\statictextbox.cpp
@@ -77,7 +76,12 @@
 	"iostream"
 	"QuizeMaster.h"
 
-1588850926 c:\users\oszto\documents\ppke\msc\3.f…l…v\bevprog2\bevprog2_badando3\include\button.h
+1589037883 c:\users\oszto\documents\ppke\msc\3.f…l…v\bevprog2\bevprog2_badando3\include\button.h
 	<Widget.h>
-	"Window.h"
+
+1589039858 source:c:\users\oszto\documents\ppke\msc\3.f…l…v\bevprog2\bevprog2_badando3\src\checkbox.cpp
+	"CheckBox.h"
+
+1589039103 c:\users\oszto\documents\ppke\msc\3.f…l…v\bevprog2\bevprog2_badando3\include\checkbox.h
+	<Widget.h>
 

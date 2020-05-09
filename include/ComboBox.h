@@ -3,7 +3,6 @@
 
 #include <Widget.h>
 #include <vector>
-#include <Window.h>
 
 class Window;
 

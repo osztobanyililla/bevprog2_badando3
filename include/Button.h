@@ -2,7 +2,6 @@
 #define BUTTON_H
 
 #include <Widget.h>
-#include "Window.h"
 
 class Window;
 
