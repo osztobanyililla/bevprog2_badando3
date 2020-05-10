@@ -1,13 +1,14 @@
 #include "QuizeMaster.h"
 #include "iostream"
+#include "cmath"
+#include "fstream"
+#include "sstream"
 #include "ComboBox.h"
 #include "StaticTextBox.h"
 #include "Button.h"
 #include "CheckBox.h"
-#include "fstream"
-#include "sstream"
 #include "Widget.h"
-#include "cmath"
+
 
 using namespace genv;
 
@@ -183,7 +184,7 @@ void QuizeMaster::check_solution(){
         }
     }
     if(solved){
-        std::cout << "Puzzle solved\n";
+        //std::cout << "Puzzle solved\n";
         game_window.game_over = true;
     }
 }
